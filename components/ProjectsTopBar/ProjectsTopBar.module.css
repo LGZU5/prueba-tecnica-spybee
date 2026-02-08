@@ -1,0 +1,268 @@
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.title {
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 500;
+}
+
+.count {
+    font-size: 14px;
+    color: #292929;
+    padding: 4px 8px;
+    background-color: #e2e2e2;
+    border-radius: 100px;
+    white-space: nowrap;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.search {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 240px;
+    max-width: 100%;
+}
+
+.search:focus {
+    outline: none;
+    border-color: #f2c94c;
+}
+
+.createButton {
+    background-color: #f2c94c;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    border: none;
+}
+
+.sortWrapper {
+    position: relative;
+}
+
+.sortButton {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e7eb;
+    transition: background 0.2s;
+}
+
+.sortButton:hover {
+    background: #f3f4f6;
+}
+
+.sortMenu {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    min-width: 240px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    z-index: 20;
+    overflow: hidden;
+}
+
+.sortMenu button {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: background 0.2s;
+}
+
+.sortMenu button:hover {
+    background: #f3f4f6;
+}
+
+.viewToggle {
+    display: flex;
+    gap: 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.viewButton {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6b7280;
+    background: #fff;
+    border: none;
+    border-right: 1px solid #e5e7eb;
+    transition: background 0.2s;
+}
+
+.viewButton:last-child {
+    border-right: none;
+}
+
+.viewButton:hover:not(:disabled) {
+    background: #f9fafb;
+}
+
+.viewButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.viewButtonActive {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+@media (max-width: 1024px) {
+    .search {
+        width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .topBar {
+        gap: 12px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .count {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+
+    .right {
+        gap: 8px;
+    }
+
+    .search {
+        width: 160px;
+        font-size: 14px;
+    }
+
+    .createButton {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .sortMenu {
+        min-width: 260px;
+    }
+
+    .sortMenu button {
+        padding: 13px 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .topBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .left {
+        justify-content: space-between;
+    }
+
+    .right {
+        justify-content: flex-start;
+        order: 2;
+    }
+
+    .search {
+        width: 100%;
+        order: 1;
+        margin-bottom: 8px;
+    }
+
+    .createButton {
+        flex: 1;
+        text-align: center;
+    }
+
+    .sortMenu {
+        left: 0;
+        right: auto;
+        min-width: 280px;
+    }
+
+    .sortMenu button {
+        padding: 14px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .viewButton,
+    .sortButton {
+        width: 32px;
+        height: 32px;
+    }
+
+    .createButton {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .sortMenu {
+        left: 0;
+        right: auto;
+        min-width: calc(100vw - 48px);
+        max-width: calc(100vw - 48px);
+    }
+
+    .sortMenu button {
+        font-size: 14px;
+        padding: 14px 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .sortMenu {
+        min-width: calc(100vw - 32px);
+        max-width: calc(100vw - 32px);
+    }
+
+    .sortMenu button {
+        font-size: 13px;
+        padding: 12px 14px;
+    }
+}

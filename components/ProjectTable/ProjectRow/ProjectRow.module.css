@@ -1,0 +1,306 @@
+.row {
+    border-top: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.row:hover {
+    background-color: #f9fafb;
+}
+
+.rowSelected {
+    background-color: #eff6ff !important;
+    border-left: 3px solid #3b82f6;
+}
+
+.rowSelected:hover {
+    background-color: #dbeafe !important;
+}
+
+.projectCell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.projectImage,
+.projectImageFallback {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.projectImage {
+    object-fit: cover;
+    background: #e5e7eb;
+}
+
+.projectImageFallback {
+    background: #f7f7f7;
+}
+
+.projectInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.projectInfo strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.projectDates {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.planBadge,
+.statusBadge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.plan-small {
+    background: #c35a00;
+    color: #fff;
+}
+
+.plan-big {
+    background: #878787;
+    color: #fff;
+}
+
+.status-active {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status-inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-suspended,
+.status-pending_payment {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+}
+
+.avatar,
+.avatarExtra {
+    width: 34px;
+    height: 39px;
+    position: relative;
+    margin-left: -4px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.avatar:first-child {
+    margin-left: 0;
+}
+
+.avatar::before,
+.avatarExtra::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    z-index: -2;
+}
+
+.avatar::after,
+.avatarExtra::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: var(--hex-color, #e5e7eb);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    z-index: -1;
+}
+
+.avatar span,
+.avatarExtra span {
+    position: relative;
+    z-index: 1;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    color: #111827;
+    text-align: center;
+}
+
+.avatarExtra span {
+    color: #92400e;
+    font-size: 10px;
+}
+
+.count {
+    text-align: left;
+    font-weight: 500;
+    padding: 12px 8px;
+}
+
+.countWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.countNumber {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    line-height: 1;
+}
+
+.countLabel {
+    font-size: 11px;
+    font-weight: 400;
+    color: #9ca3af;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+    .projectCell {
+        gap: 8px;
+    }
+
+    .projectImage,
+    .projectImageFallback {
+        width: 36px;
+        height: 36px;
+    }
+
+    .avatar,
+    .avatarExtra {
+        width: 30px;
+        height: 35px;
+        margin-left: -3px;
+    }
+
+    .avatar span,
+    .avatarExtra span {
+        font-size: 10px;
+    }
+
+    .avatarExtra span {
+        font-size: 9px;
+    }
+
+    .countNumber {
+        font-size: 15px;
+    }
+
+    .countLabel {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .projectCell {
+        gap: 6px;
+    }
+
+    .projectImage,
+    .projectImageFallback {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+    }
+
+    .projectInfo strong {
+        font-size: 13px;
+    }
+
+    .projectDates {
+        font-size: 11px;
+    }
+
+    .planBadge,
+    .statusBadge {
+        padding: 3px 6px;
+        font-size: 11px;
+    }
+
+    .avatar,
+    .avatarExtra {
+        width: 26px;
+        height: 30px;
+        margin-left: -2px;
+    }
+
+    .avatar span,
+    .avatarExtra span {
+        font-size: 9px;
+    }
+
+    .avatarExtra span {
+        font-size: 8px;
+    }
+
+    .countNumber {
+        font-size: 14px;
+    }
+
+    .countLabel {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 480px) {
+    .projectCell {
+        gap: 4px;
+    }
+
+    .projectImage,
+    .projectImageFallback {
+        width: 28px;
+        height: 28px;
+    }
+
+    .projectInfo strong {
+        font-size: 12px;
+    }
+
+    .projectDates {
+        font-size: 10px;
+    }
+
+    .planBadge,
+    .statusBadge {
+        padding: 2px 5px;
+        font-size: 10px;
+    }
+
+    .avatar,
+    .avatarExtra {
+        width: 24px;
+        height: 28px;
+    }
+
+    .countNumber {
+        font-size: 13px;
+    }
+
+    .countLabel {
+        font-size: 8px;
+    }
+}

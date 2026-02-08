@@ -1,0 +1,97 @@
+.pagination {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageButton {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 40px;
+}
+
+.pageButton:hover:not(.pageButtonActive):not(:disabled) {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+.pageButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pageButtonActive {
+    background: #111827;
+    color: #ffffff;
+    border-color: #111827;
+}
+
+.pageButtonActive:hover {
+    background: #1f2937;
+}
+
+.navButton {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        gap: 6px;
+        margin-top: 12px;
+    }
+
+    .pageButton {
+        padding: 6px 10px;
+        font-size: 13px;
+        min-width: 36px;
+    }
+
+    .navButton {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination {
+        gap: 4px;
+        margin-top: 12px;
+    }
+
+    .pageButton {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-width: 32px;
+    }
+
+    .navButton {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .pagination {
+        gap: 3px;
+    }
+
+    .pageButton {
+        padding: 5px 7px;
+        font-size: 11px;
+        min-width: 28px;
+    }
+
+    .navButton {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}

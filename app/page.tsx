@@ -1,66 +1,84 @@
+"use client";
+
+import { useEffect } from "react";
+import mockData from "@/data/mock_data.json";
+import { useProjectsStore } from "@/store/projectsStore";
+import { ProjectWithCounts } from "@/types/project";
+import { MapView } from "@/components/Map/MapView";
+import { ProjectsTopBar } from "@/components/ProjectsTopBar/ProjectsTopBar";
+import { ProjectTable } from "@/components/ProjectTable/ProjectTable";
+import { Sidebar } from "@/components/Sidebar/Sidebar";
 import Image from "next/image";
 import styles from "./page.module.css";
 
-export default function Home() {
+export default function HomePage() {
+  const setProjects = useProjectsStore((state) => state.setProjects);
+  const selectedProject = useProjectsStore((state) => state.selectedProject);
+  const viewMode = useProjectsStore((state) => state.viewMode);
+  const sidebarOpen = useProjectsStore((state) => state.sidebarOpen);
+  const toggleSidebar = useProjectsStore((state) => state.toggleSidebar);
+
+  useEffect(() => {
+    const projectsWithCounts: ProjectWithCounts[] = mockData.map((project) => {
+      const activeIncidents = (project.incidents ?? []).filter(
+        (i) => i.status === "active",
+      );
+
+      return {
+        ...project,
+        incidentsCount: activeIncidents.filter((i) => i.item === "incidents")
+          .length,
+        rfiCount: activeIncidents.filter((i) => i.item === "RFI").length,
+        taskCount: activeIncidents.filter((i) => i.item === "task").length,
+      };
+    });
+
+    setProjects(projectsWithCounts);
+  }, [setProjects]);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <main className={styles.main}>
+      <ProjectsTopBar />
+
+      <div className={styles.contentWrapper}>
+        <div className={styles.mainContent}>
+          {viewMode === "list" && (
+            <div className={styles.tableOnlyContainer}>
+              <div className={styles.scrollWrapper}>
+                <ProjectTable />
+              </div>
+            </div>
+          )}
+
+          {viewMode === "map" && (
+            <section className={styles.mapViewSection}>
+              <div className={styles.mapWrapper}>
+                <MapView project={selectedProject} />
+              </div>
+
+              <div className={styles.tableContainer}>
+                <ProjectTable />
+              </div>
+            </section>
+          )}
+        </div>
+
+        <Sidebar />
+      </div>
+
+      <button
+        className={styles.sidebarToggle}
+        onClick={toggleSidebar}
+        aria-label={sidebarOpen ? "Cerrar panel" : "Abrir panel"}
+        title={sidebarOpen ? "Cerrar panel" : "Abrir panel"}
+      >
         <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
+          src={sidebarOpen ? "/left-arrow.svg" : "/right-arrow.svg"}
+          alt=""
+          width={20}
           height={20}
-          priority
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </button>
+    </main>
   );
 }
