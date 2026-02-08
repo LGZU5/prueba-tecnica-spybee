@@ -33,7 +33,7 @@ export function ProjectTable() {
   );
 
   return (
-    <>
+    <div className={styles.tableContainer}>
       <div className={styles.scrollHint}>← Desliza para ver más →</div>
 
       <div className={styles.tableWrapper}>
@@ -64,11 +64,13 @@ export function ProjectTable() {
         </table>
       </div>
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
-    </>
+      <div className={styles.paginationWrapper}>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
+      </div>
+    </div>
   );
 }
